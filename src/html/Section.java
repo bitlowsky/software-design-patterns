@@ -24,6 +24,12 @@ public class Section extends Tag {
         tags.add(tag);
     }
 
+    public void addTags(List<Tag> tags) {
+        for (Tag tag : tags) {
+            addTag(tag);
+        }
+    }
+
     @Override
     public String toString() {
         String sectionBody = "";

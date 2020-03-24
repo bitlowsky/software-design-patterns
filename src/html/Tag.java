@@ -61,9 +61,6 @@ public class Tag {
     public String toString() {
         String tagHead = "<" + name;
 
-        if (text == null)
-            text = id;
-
         if (id != null)
             tagHead += " id=\"" + id + "\"";
 

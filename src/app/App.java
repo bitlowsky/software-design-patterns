@@ -3,24 +3,24 @@ package app;
 import html.Html;
 import html.Section;
 import html.Tag;
+import html.TagFactory;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Section section_0 = new Section("section");
+        Section header = new Section("header");
 
-        Tag div = new Tag("div", "hello");
-        div.setBorder();
-        section_0.addTag(div);
+        header.addTags(TagFactory.getTags("div", 5));
 
-        section_0.addTag(new Tag("p"));
+        Tag p = new Tag("p", "Lorem upsum");
+        p.setBorder();
+        header.addTag(p);
+
+        header.addTags(TagFactory.getTags("div", 5));
 
         Html html = new Html();
-
-        html.addSection(section_0);
-        html.addSection(section_0);
+        html.addSection(header);
 
         System.out.println(html);
-
         html.saveToFile("index.html");
     }
 }
