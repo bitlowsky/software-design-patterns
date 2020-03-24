@@ -3,7 +3,6 @@ package app;
 import html.Html;
 import html.Section;
 import html.Tag;
-import java.io.FileWriter;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -15,10 +14,9 @@ public class App {
         Html html = new Html();
         html.addSection(test);
         html.addSection(test);
+
         System.out.println(html);
 
-        FileWriter index = new FileWriter("index.html");
-        index.write(String.valueOf(html));
-        index.close();
+        html.saveToFile("index.html");
     }
 }
