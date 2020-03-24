@@ -6,14 +6,18 @@ import html.Tag;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Section test = new Section("section");
+        Section section_0 = new Section("section");
+
         Tag div = new Tag("div", "hello");
         div.setBorder();
-        test.addTag(div);
-        test.addTag(new Tag("p", "Lorem"));
+        section_0.addTag(div);
+
+        section_0.addTag(new Tag("p"));
+
         Html html = new Html();
-        html.addSection(test);
-        html.addSection(test);
+
+        html.addSection(section_0);
+        html.addSection(section_0);
 
         System.out.println(html);
 
