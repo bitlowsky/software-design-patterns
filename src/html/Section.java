@@ -30,6 +30,12 @@ public class Section extends Tag {
         }
     }
 
+    public Tag[] getTags() {
+        Tag[] arr = new Tag[tags.size()];
+        tags.toArray(arr);
+        return arr;
+    }
+
     @Override
     public String toString() {
         String sectionBody = "";

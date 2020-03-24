@@ -17,6 +17,12 @@ public class Html {
         sections.add(section);
     }
 
+    public Section[] getSections() {
+        Section[] arr = new Section[sections.size()];
+        sections.toArray(arr);
+        return arr;
+    }
+
     public void saveToFile(String fileName) throws IOException {
         FileWriter file = new FileWriter(fileName);
         file.write(toString());
