@@ -11,10 +11,20 @@ public class Html {
     public Html() {
     }
 
+    public Html(List<Section> sections) {
+        this.sections = sections;
+    }
+
     public void addSection(Section section) {
         if (section.getId() == null)
             section.setId("section_" + sections.size());
         sections.add(section);
+    }
+
+    public void addSections(List<Section> sections) {
+        for (Section section : sections) {
+            addSection(section);
+        }
     }
 
     public Section[] getSections() {
@@ -37,4 +47,5 @@ public class Html {
         }
         return html;
     }
+
 }

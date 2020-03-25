@@ -18,4 +18,14 @@ public class TagFactory {
         return tags;
     }
 
+    public static List<Tag> getTags(int count) {
+        List<Tag> tags = new LinkedList<>();
+
+        for (int i = 0; i < count; i++) {
+            tags.add(new Tag("div", "div_" + i));
+        }
+
+        return tags;
+    }
+
 }
