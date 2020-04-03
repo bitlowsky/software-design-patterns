@@ -3,7 +3,6 @@ package html;
 public class Tag {
     private String name;
     private String body;
-    private String id;
     private String style;
 
     public Tag(String name) {
@@ -13,12 +12,6 @@ public class Tag {
     public Tag(String name, String body) {
         this.name = name;
         this.body = body;
-    }
-
-    public Tag(String name, String body, String id) {
-        this.name = name;
-        this.body = body;
-        this.id = id;
     }
 
     public String getName() {
@@ -37,14 +30,6 @@ public class Tag {
         this.body = body;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getStyle() {
         return style;
     }
@@ -61,9 +46,6 @@ public class Tag {
     public String toString() {
         String tagHead = "<" + name;
         String tagTail = "</" + name + ">";
-
-        if (id != null)
-            tagHead += " id=\"" + id + "\"";
 
         if (style != null)
             tagHead += " style=\"" + style + "\"";
