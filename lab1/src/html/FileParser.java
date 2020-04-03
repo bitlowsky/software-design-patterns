@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import html.base.Html;
+import html.base.Section;
+
 public class FileParser {
     private String file;
 

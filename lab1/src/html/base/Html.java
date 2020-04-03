@@ -1,4 +1,4 @@
-package html;
+package html.base;
 
 import java.io.FileWriter;
 import java.io.IOException;

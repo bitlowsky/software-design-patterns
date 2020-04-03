@@ -3,6 +3,8 @@ package html;
 import java.util.LinkedList;
 import java.util.List;
 
+import html.base.Tag;
+
 public class SimpleTagFactory implements ITagFactory {
     final public String name;
 
