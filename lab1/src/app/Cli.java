@@ -18,29 +18,28 @@ public class Cli {
 
     public void start() throws IOException {
         do {
-            System.out.println(html);
-            System.out.println("1.Add section border\n2.Add tag border\n3.Exit");
-            System.out.print(">>>");
-            ans = in.nextInt();
-
-            if (ans == 1) {
-                Section section = sectionMenu();
-                section.setBorder(5, "black");
-            }
-
-            if (ans == 2) {
-                Tag tag = TagMenu();
-                tag.setBorder(5, "black");
-            }
+            mainMenu();
         } while (ans != 3);
 
-        System.out.println("\nSave the file as index.html?\n1.Yes\n2.No");
+        saveMenu();
+        in.close();
+    }
+
+    private void mainMenu() {
+        System.out.println(html);
+        System.out.println("1.Add section border\n2.Add tag border\n3.Exit");
+        System.out.print(">>>");
         ans = in.nextInt();
 
-        if (ans == 1)
-            html.saveToFile("index.html");
+        if (ans == 1) {
+            Section section = sectionMenu();
+            section.setBorder(5, "black");
+        }
 
-        in.close();
+        if (ans == 2) {
+            Tag tag = TagMenu();
+            tag.setBorder(5, "black");
+        }
     }
 
     private Section sectionMenu() {
@@ -64,6 +63,14 @@ public class Cli {
 
         System.out.print(">>>");
         return tags[in.nextInt()];
+    }
+
+    private void saveMenu() throws IOException {
+        System.out.println("\nSave the file as index.html?\n1.Yes\n2.No");
+        ans = in.nextInt();
+
+        if (ans == 1)
+            html.saveToFile("index.html");
     }
 
 }
