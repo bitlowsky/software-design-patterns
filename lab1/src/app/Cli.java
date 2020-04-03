@@ -1,5 +1,6 @@
 package app;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import html.base.Html;
@@ -15,7 +16,7 @@ public class Cli {
         this.html = html;
     }
 
-    public void start() {
+    public void start() throws IOException {
         do {
             System.out.println(html);
             System.out.println("1.Add section border\n2.Add tag border\n3.Exit");
@@ -31,10 +32,13 @@ public class Cli {
                 Tag tag = TagMenu();
                 tag.setBorder(5, "black");
             }
-
-            System.out.println("\u001b[2J");
-
         } while (ans != 3);
+
+        System.out.println("\nSave the file as index.html?\n1.Yes\n2.No");
+        ans = in.nextInt();
+
+        if (ans == 1)
+            html.saveToFile("index.html");
 
         in.close();
     }
