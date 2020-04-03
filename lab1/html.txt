@@ -1,4 +1,4 @@
-header 10 3
+header 10
 section
-section 3 d
+section 3
 footer 2
