@@ -37,7 +37,7 @@ public class Cli {
         }
 
         if (ans == 2) {
-            Tag tag = TagMenu();
+            Tag tag = tagMenu();
             tag.setBorder(5, "black");
         }
     }
@@ -53,7 +53,7 @@ public class Cli {
         return sections[in.nextInt()];
     }
 
-    private Tag TagMenu() {
+    private Tag tagMenu() {
         Section section = sectionMenu();
         Tag[] tags = section.getTags();
 
