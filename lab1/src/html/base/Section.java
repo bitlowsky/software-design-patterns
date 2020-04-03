@@ -15,8 +15,8 @@ public class Section extends Tag {
         this.tags = tags;
     }
 
-    public Section[] getTags() {
-        return tags.toArray(new Section[tags.size()]);
+    public Tag[] getTags() {
+        return tags.toArray(new Tag[tags.size()]);
     }
 
     public void setTags(List<Tag> tags) {
