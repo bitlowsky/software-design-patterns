@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Html {
-    private List<Section> sections = new LinkedList<>();
+    private List<Section> sections = new LinkedList<Section>();
 
     public Html() {
     }
@@ -15,9 +15,15 @@ public class Html {
         this.sections = sections;
     }
 
+    public Section[] getSections() {
+        return sections.toArray(new Section[sections.size()]);
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
+    }
+
     public void addSection(Section section) {
-        if (section.getId() == null)
-            section.setId("section_" + sections.size());
         sections.add(section);
     }
 
@@ -25,12 +31,6 @@ public class Html {
         for (Section section : sections) {
             addSection(section);
         }
-    }
-
-    public Section[] getSections() {
-        Section[] arr = new Section[sections.size()];
-        sections.toArray(arr);
-        return arr;
     }
 
     public void saveToFile(String fileName) throws IOException {

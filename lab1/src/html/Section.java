@@ -4,23 +4,26 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Section extends Tag {
-    private List<Tag> tags = new LinkedList<>();
+    private List<Tag> tags = new LinkedList<Tag>();
 
     public Section(String name) {
         super(name);
     }
 
-    public Section(String name, String text) {
-        super(name, text);
+    public Section(String name, List<Tag> tags) {
+        super(name);
+        this.tags = tags;
     }
 
-    public Section(String name, String text, String id) {
-        super(name, text, id);
+    public Section[] getTags() {
+        return tags.toArray(new Section[tags.size()]);
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     public void addTag(Tag tag) {
-        if (tag.getId() == null)
-            tag.setId("block_" + tags.size());
         tags.add(tag);
     }
 
@@ -30,32 +33,22 @@ public class Section extends Tag {
         }
     }
 
-    public Tag[] getTags() {
-        Tag[] arr = new Tag[tags.size()];
-        tags.toArray(arr);
-        return arr;
-    }
-
     @Override
     public String toString() {
-        String sectionBody = "";
-        String tagHead = "<" + super.getName();
-        String tagTail = "";
+        String tagHead = "<" + name;
+        String tagBody = "";
+        String tagTail = "\n</" + name + ">";
 
-        if (super.getId() != null)
-            tagHead += " id=\"" + super.getId() + "\"";
-        if (super.getStyle() != null)
-            tagHead += " style=\"" + super.getStyle() + "\"";
+        if (style != null)
+            tagHead += " style='" + style + "'";
 
         tagHead += ">";
 
         for (Tag tag : tags) {
-            sectionBody += "\n\t" + tag;
+            tagBody += "\n\t" + tag;
         }
 
-        tagTail = "\n</" + super.getName() + ">";
-
-        return tagHead + sectionBody + tagTail;
+        return tagHead + tagBody + tagTail;
     }
 
 }

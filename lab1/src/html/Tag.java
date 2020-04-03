@@ -1,9 +1,9 @@
 package html;
 
 public class Tag {
-    private String name;
-    private String body;
-    private String style;
+    protected String name;
+    protected String body;
+    protected String style;
 
     public Tag(String name) {
         this.name = name;
@@ -45,12 +45,18 @@ public class Tag {
     @Override
     public String toString() {
         String tagHead = "<" + name;
+        String tagBody = "";
         String tagTail = "</" + name + ">";
 
-        if (style != null)
-            tagHead += " style=\"" + style + "\"";
+        if (body != null)
+            tagBody += body;
 
-        return tagHead + ">" + body + tagTail;
+        if (style != null)
+            tagHead += " style='" + style + "'";
+
+        tagHead += ">";
+
+        return tagHead + ">" + tagBody + tagTail;
     }
 
 }
