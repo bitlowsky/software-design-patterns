@@ -56,7 +56,7 @@ public class Tag {
 
         tagHead += ">";
 
-        return tagHead + ">" + tagBody + tagTail;
+        return tagHead + tagBody + tagTail;
     }
 
 }
