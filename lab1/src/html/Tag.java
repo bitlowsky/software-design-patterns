@@ -2,7 +2,7 @@ package html;
 
 public class Tag {
     private String name;
-    private String text;
+    private String body;
     private String id;
     private String style;
 
@@ -10,14 +10,14 @@ public class Tag {
         this.name = name;
     }
 
-    public Tag(String name, String text) {
+    public Tag(String name, String body) {
         this.name = name;
-        this.text = text;
+        this.body = body;
     }
 
-    public Tag(String name, String text, String id) {
+    public Tag(String name, String body, String id) {
         this.name = name;
-        this.text = text;
+        this.body = body;
         this.id = id;
     }
 
@@ -29,12 +29,12 @@ public class Tag {
         this.name = name;
     }
 
-    public String getText() {
-        return text;
+    public String getBody() {
+        return body;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setBody(String body) {
+        this.body = body;
     }
 
     public String getId() {
@@ -53,13 +53,14 @@ public class Tag {
         this.style = style;
     }
 
-    public void setBorder() {
-        setStyle("border:10px solid black");
+    public void setBorder(int thickness, String color) {
+        setStyle("border:" + thickness + "px solid " + color);
     }
 
     @Override
     public String toString() {
         String tagHead = "<" + name;
+        String tagTail = "</" + name + ">";
 
         if (id != null)
             tagHead += " id=\"" + id + "\"";
@@ -67,7 +68,7 @@ public class Tag {
         if (style != null)
             tagHead += " style=\"" + style + "\"";
 
-        return tagHead + ">" + text + "</" + name + ">";
+        return tagHead + ">" + body + tagTail;
     }
 
 }
