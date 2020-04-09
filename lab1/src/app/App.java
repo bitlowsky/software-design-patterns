@@ -6,8 +6,8 @@ import html.base.Html;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        FileParser txt = new FileParser("html.txt");
-        Html html = txt.getHtml(new SimpleTagFactory("div"));
+        FileParser txt = new FileParser(new SimpleTagFactory("div"));
+        Html html = txt.getHtml("html.txt");
 
         Cli app = new Cli(html);
         app.start();

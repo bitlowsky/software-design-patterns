@@ -10,13 +10,13 @@ import html.base.Html;
 import html.base.Section;
 
 public class FileParser {
-    private String file;
+    private ITagFactory tagFactory;
 
-    public FileParser(String file) {
-        this.file = file;
+    public FileParser(ITagFactory tagFactory) {
+        this.tagFactory = tagFactory;
     }
 
-    public Html getHtml(ITagFactory tagFactory) throws FileNotFoundException {
+    public Html getHtml(String file) throws FileNotFoundException {
         Scanner scan = new Scanner(new FileReader(file));
         List<Section> sections = new LinkedList<Section>();
 
