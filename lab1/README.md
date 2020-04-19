@@ -64,5 +64,5 @@
     >>>
     ```
 
-### UML схема
-![uml](res/uml.jpg)  
+### Отчет
+[report.pdf](res/report.pdf)
