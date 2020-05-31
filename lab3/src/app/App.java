@@ -2,14 +2,18 @@ package app;
 
 import html.FileParser;
 import html.SimpleTagFactory;
-import html.base.Html;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        FileParser txt = new FileParser(new SimpleTagFactory("div"));
-        Html html = txt.getHtml("html.txt");
+        FileParser[] fParsers = { new FileParser(new SimpleTagFactory("div")),
+                new FileParser(new SimpleTagFactory("p")), new FileParser(new SimpleTagFactory("a")) };
 
-        System.out.println(html);
+        for (int i = 0; i < 10; i++) {
+            for (FileParser fp : fParsers) {
+                new Thread(() -> System.out.println(fp.getHtml("html.txt"))).start();
+            }
+        }
+
     }
 
 }
