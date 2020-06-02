@@ -9,13 +9,13 @@ import threads.ConfigurationGenerator;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        RenderStack rs = new RenderStack(3, new SimpleTagFactory("div"));
+        RenderStack rs = new RenderStack(10, new SimpleTagFactory("div"));
         List<Thread> threads = new ArrayList<>();
 
-        for (int i = 0; i < 1; i++)
-            threads.add(new Thread(new ConfigurationGenerator(rs, 100)));
+        for (int i = 0; i < 10; i++)
+            threads.add(new Thread(new ConfigurationGenerator(rs, 300)));
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
             threads.add(new Thread(new threads.ConfigurationProcessor(rs, 500)));
 
         for (Thread thread : threads)

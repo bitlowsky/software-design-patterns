@@ -13,9 +13,7 @@ public class ConfigurationProcessor implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            if (Thread.currentThread().isInterrupted())
-                break;
+        while (!Thread.currentThread().isInterrupted()) {
             rs.processByThread();
             try {
                 Thread.sleep(sleepTime);

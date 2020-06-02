@@ -16,9 +16,7 @@ public class ConfigurationGenerator implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            if (Thread.currentThread().isInterrupted())
-                break;
+        while (!Thread.currentThread().isInterrupted()) {
             rs.pushByThread(random.nextInt(10) + 1);
             try {
                 Thread.sleep(sleepTime);
