@@ -1,16 +1,35 @@
 package app;
 
-import html.FileParser;
+import java.util.ArrayList;
+import java.util.List;
+
 import html.SimpleTagFactory;
-import html.base.Html;
+import resources.RenderStack;
+import threads.ConfigurationGenerator;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        FileParser txt = new FileParser(new SimpleTagFactory("div"));
-        Html html = txt.getHtml("html.txt");
+        RenderStack rs = new RenderStack(3, new SimpleTagFactory("div"));
+        List<Thread> threads = new ArrayList<>();
 
-        Cli app = new Cli(html);
-        app.start();
+        for (int i = 0; i < 3; i++)
+            threads.add(new Thread(new ConfigurationGenerator(rs, 250)));
+
+        for (int i = 0; i < 3; i++)
+            threads.add(new Thread(new threads.ConfigurationProcessor(rs, 500)));
+
+        for (Thread thread : threads) {
+            thread.start();
+        }
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+        }
+
+        for (Thread thread : threads) {
+            thread.interrupt();
+        }
     }
 
 }
