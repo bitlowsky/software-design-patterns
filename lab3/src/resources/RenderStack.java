@@ -35,7 +35,8 @@ public class RenderStack {
             }
         if (index != stack.length) {
             push(numberOfTags);
-            notifyAll();
+            if (index == 1)
+                notifyAll();
         }
     }
 
@@ -49,7 +50,8 @@ public class RenderStack {
             }
         if (index != 0) {
             process();
-            notifyAll();
+            if (index == (stack.length - 1))
+                notifyAll();
         }
     }
 }
