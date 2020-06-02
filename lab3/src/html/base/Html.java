@@ -43,7 +43,11 @@ public class Html {
     public String toString() {
         String html = "";
         for (Tag tag : tags) {
-            html += tag + "\n\n";
+            if (tag.getInnerTags().length != 0)
+                html += tag + "\n\n";
+            else {
+                html += tag + "\n";
+            }
         }
         return html;
     }
