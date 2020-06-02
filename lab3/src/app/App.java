@@ -12,10 +12,10 @@ public class App {
         RenderStack rs = new RenderStack(3, new SimpleTagFactory("div"));
         List<Thread> threads = new ArrayList<>();
 
-        for (int i = 0; i < 1; i++)
-            threads.add(new Thread(new ConfigurationGenerator(rs, 100)));
-
         for (int i = 0; i < 3; i++)
+            threads.add(new Thread(new ConfigurationGenerator(rs, 300)));
+
+        for (int i = 0; i < 5; i++)
             threads.add(new Thread(new threads.ConfigurationProcessor(rs, 500)));
 
         for (Thread thread : threads)

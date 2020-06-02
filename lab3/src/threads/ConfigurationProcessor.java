@@ -13,10 +13,18 @@ public class ConfigurationProcessor implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            if (Thread.currentThread().isInterrupted())
-                break;
-            rs.processByThread();
+        while (!Thread.currentThread().isInterrupted()) {
+            synchronized (rs) {
+                if (rs.getIndex() != 0)
+                    rs.process();
+                else
+                    try {
+                        rs.wait();
+                    } catch (Exception e) {
+                        break;
+                    }
+                rs.notifyAll();
+            }
             try {
                 Thread.sleep(sleepTime);
             } catch (InterruptedException e) {

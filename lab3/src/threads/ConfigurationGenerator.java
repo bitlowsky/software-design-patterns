@@ -16,10 +16,18 @@ public class ConfigurationGenerator implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            if (Thread.currentThread().isInterrupted())
-                break;
-            rs.pushByThread(random.nextInt(10) + 1);
+        while (!Thread.currentThread().isInterrupted()) {
+            synchronized (rs) {
+                if (rs.getIndex() < rs.getStackLength())
+                    rs.push(random.nextInt(10) + 1);
+                else
+                    try {
+                        rs.wait();
+                    } catch (Exception e) {
+                        break;
+                    }
+                rs.notifyAll();
+            }
             try {
                 Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
