@@ -15,14 +15,14 @@ public class RenderStack {
 
     private void push(int numberOfTags) {
         stack[index] = numberOfTags;
-        System.out.println("В очередь добавлена конфигурация " + (index) + " (" + stack[index] + ").");
+        System.out.println("В очередь добавлена конфигурация " + index + " (" + stack[index] + ").");
         index++;
     }
 
     private void process() {
+        System.out.println("Конфигурация " + (index - 1) + " (" + stack[index - 1] + ") обработана.");
+        System.out.println(new Html(tagFactory.createTags(stack[index - 1])));
         index--;
-        System.out.println("Конфигурация " + index + " (" + stack[index] + ") обработана.");
-        System.out.println(new Html(tagFactory.createTags(stack[index])));
     }
 
     public synchronized void pushByThread(int numberOfTags) {
@@ -35,8 +35,7 @@ public class RenderStack {
             }
         if (index != stack.length) {
             push(numberOfTags);
-            if (index == 1)
-                notifyAll();
+            notifyAll();
         }
     }
 
@@ -50,8 +49,7 @@ public class RenderStack {
             }
         if (index != 0) {
             process();
-            if (index == (stack.length - 1))
-                notifyAll();
+            notifyAll();
         }
     }
 }
