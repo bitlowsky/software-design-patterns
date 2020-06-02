@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import html.base.Html;
-import html.base.Section;
 import html.base.Tag;
 
 public class Cli {
@@ -32,7 +31,7 @@ public class Cli {
         ans = in.nextInt();
 
         if (ans == 1) {
-            Section section = sectionMenu();
+            Tag section = sectionMenu();
             section.setBorder(5, "black");
         }
 
@@ -42,8 +41,8 @@ public class Cli {
         }
     }
 
-    private Section sectionMenu() {
-        Section[] sections = html.getSections();
+    private Tag sectionMenu() {
+        Tag[] sections = html.getSections();
 
         for (int i = 0; i < sections.length; i++) {
             System.out.println(i + "." + sections[i].getName());
@@ -54,8 +53,8 @@ public class Cli {
     }
 
     private Tag tagMenu() {
-        Section section = sectionMenu();
-        Tag[] tags = section.getTags();
+        Tag section = sectionMenu();
+        Tag[] tags = section.getInnerTags();
 
         for (int i = 0; i < tags.length; i++) {
             System.out.println(i + "." + tags[i]);

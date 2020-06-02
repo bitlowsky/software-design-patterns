@@ -6,30 +6,30 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Html {
-    private List<Section> sections = new LinkedList<Section>();
+    private List<Tag> tags = new LinkedList<Tag>();
 
     public Html() {
     }
 
-    public Html(List<Section> sections) {
-        this.sections = sections;
+    public Html(List<Tag> tags) {
+        this.tags = tags;
     }
 
-    public Section[] getSections() {
-        return sections.toArray(new Section[sections.size()]);
+    public Tag[] getSections() {
+        return tags.toArray(new Tag[tags.size()]);
     }
 
-    public void setSections(List<Section> sections) {
-        this.sections = sections;
+    public void setSections(List<Tag> tags) {
+        this.tags = tags;
     }
 
-    public void addSection(Section section) {
-        sections.add(section);
+    public void addSection(Tag tag) {
+        tags.add(tag);
     }
 
-    public void addSections(List<Section> sections) {
-        for (Section section : sections) {
-            addSection(section);
+    public void addSections(List<Tag> tags) {
+        for (Tag tag : tags) {
+            addSection(tag);
         }
     }
 
@@ -42,8 +42,8 @@ public class Html {
     @Override
     public String toString() {
         String html = "";
-        for (Section section : sections) {
-            html += section + "\n\n";
+        for (Tag tag : tags) {
+            html += tag + "\n\n";
         }
         return html;
     }

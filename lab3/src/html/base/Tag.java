@@ -1,17 +1,26 @@
 package html.base;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Tag {
-    protected String name;
-    protected String body;
-    protected String style;
+    private String name;
+    private String text;
+    private String style;
+    private List<Tag> innerTags = new LinkedList<Tag>();
 
     public Tag(String name) {
         this.name = name;
     }
 
-    public Tag(String name, String body) {
+    public Tag(String name, String text) {
         this.name = name;
-        this.body = body;
+        this.text = text;
+    }
+
+    public Tag(String name, List<Tag> innerTags) {
+        this.name = name;
+        this.innerTags = innerTags;
     }
 
     public String getName() {
@@ -22,12 +31,12 @@ public class Tag {
         this.name = name;
     }
 
-    public String getBody() {
-        return body;
+    public String getText() {
+        return text;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public String getStyle() {
@@ -42,14 +51,41 @@ public class Tag {
         setStyle("border:" + thickness + "px solid " + color);
     }
 
+    public Tag[] getInnerTags() {
+        return innerTags.toArray(new Tag[innerTags.size()]);
+    }
+
+    public void setInnerTags(List<Tag> tags) {
+        this.innerTags = tags;
+    }
+
+    public void addInnerTag(Tag tag) {
+        innerTags.add(tag);
+    }
+
+    public void addInnerTags(List<Tag> tags) {
+        for (Tag tag : tags) {
+            addInnerTag(tag);
+        }
+    }
+
     @Override
     public String toString() {
         String tagHead = "<" + name;
         String tagBody = "";
-        String tagTail = "</" + name + ">";
+        String tagTail = "";
 
-        if (body != null)
-            tagBody += body;
+        if (text != null)
+            tagBody += text;
+
+        if (innerTags.size() != 0) {
+            tagTail = "\n</" + name + ">";
+            for (Tag tag : innerTags) {
+                tagBody += "\n\t" + tag;
+            }
+        } else {
+            tagTail = "</" + name + ">";
+        }
 
         if (style != null)
             tagHead += " style='" + style + "'";

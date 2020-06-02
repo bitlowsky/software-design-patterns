@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import html.base.Html;
-import html.base.Section;
+import html.base.Tag;
 
 public class FileParser {
     private ITagFactory tagFactory;
@@ -20,14 +20,14 @@ public class FileParser {
         Scanner scan;
         try {
             scan = new Scanner(new FileReader(file));
-            List<Section> sections = new LinkedList<Section>();
+            List<Tag> sections = new LinkedList<Tag>();
 
             while (scan.hasNextLine() & scan.hasNext()) {
                 Scanner line = new Scanner(scan.nextLine());
-                Section section = new Section(line.next());
+                Tag section = new Tag(line.next());
 
                 if (line.hasNextInt())
-                    section.addTags(tagFactory.createTags(line.nextInt()));
+                    section.addInnerTags(tagFactory.createTags(line.nextInt()));
 
                 sections.add(section);
             }
