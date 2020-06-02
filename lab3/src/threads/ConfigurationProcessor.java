@@ -23,7 +23,8 @@ public class ConfigurationProcessor implements Runnable {
                     } catch (Exception e) {
                         break;
                     }
-                rs.notifyAll();
+                if (rs.getIndex() == rs.getStackLength() - 1)
+                    rs.notifyAll();
             }
             try {
                 Thread.sleep(sleepTime);

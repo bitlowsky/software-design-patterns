@@ -18,7 +18,7 @@ public class ConfigurationGenerator implements Runnable {
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
             synchronized (rs) {
-                if (rs.getIndex() < rs.getStackLength())
+                if (rs.getIndex() != rs.getStackLength())
                     rs.push(random.nextInt(10) + 1);
                 else
                     try {
@@ -26,7 +26,8 @@ public class ConfigurationGenerator implements Runnable {
                     } catch (Exception e) {
                         break;
                     }
-                rs.notifyAll();
+                if (rs.getIndex() == 1)
+                    rs.notifyAll();
             }
             try {
                 Thread.sleep(sleepTime);
