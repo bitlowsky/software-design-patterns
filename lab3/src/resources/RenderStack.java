@@ -1,5 +1,8 @@
 package resources;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import html.ITagFactory;
 import html.base.Html;
 
@@ -20,8 +23,15 @@ public class RenderStack {
     }
 
     private void process() {
-        System.out.println("Конфигурация " + (index - 1) + " (" + stack[index - 1] + ") обработана.");
-        System.out.println(new Html(tagFactory.createTags(stack[index - 1])));
+        Html html = new Html(tagFactory.createTags(stack[index - 1]));
+        try {
+            FileOutputStream fos = new FileOutputStream("out.txt", true);
+            fos.write((html.toString() + "\n").getBytes());
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Конфигурация " + (index - 1) + " (" + stack[index - 1] + ") обработана.\n" + html);
         index--;
     }
 
